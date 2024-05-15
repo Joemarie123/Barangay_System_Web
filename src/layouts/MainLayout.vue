@@ -17,27 +17,27 @@
           shrink
           class="row items-center no-wrap"
         >
-          <img
+          <!--   <img
             width="50"
             height="50"
             src="https://img.icons8.com/stickers/100/engineering.png"
             alt="engineering"
-          />
+          /> -->
           <span class="q-ml-xs" style="font-size: 15px"
-            >CITY HEALTH CERTIFICATE SYSTEM</span
+            >Barangay Information System Web Base</span
           >
         </q-toolbar-title>
 
         <q-space />
 
-        <div class="q-gutter-sm row items-center no-wrap">
+        <!--  <div class="q-gutter-sm row items-center no-wrap">
           <q-btn round flat>
             <q-avatar size="26px">
               <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
             </q-avatar>
             <q-tooltip>Account</q-tooltip>
           </q-btn>
-        </div>
+        </div> -->
       </q-toolbar>
     </q-header>
 
@@ -50,23 +50,36 @@
     >
       <q-scroll-area class="fit">
         <q-list padding class="text-grey-8">
-          <q-item
-            clickable
-            v-ripple
-            @click="handleItemClick"
-            :class="{ 'active-item': selectedSection === 'dashboard' }"
-          >
-            <q-item-section avatar>
+          <q-item class="q-pa-lg">
+            <!--   <q-item-section avatar>
               <q-avatar
                 rounded
-                :style="{
-                  'background-color':
-                    selectedSection === 'dashboard' ? '#057407' : '#5f6368',
+                :class="{
+                  'avatar-with-overlay': selectedSection === 'dashboard',
+                  'avatar-default': selectedSection !== 'dashboard',
                 }"
                 text-color="white"
                 icon="dashboard"
               >
               </q-avatar>
+            </q-item-section> -->
+
+            <q-item-section class="responsive-text">
+              <q-item-label> <b>DASHBOARD VIEW</b> </q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            @click="handleItemClick"
+            :class="{ 'active-item': selectedSection === 'dashboard' }"
+          >
+            <q-item-section avatar>
+              <q-icon
+                class="iconcolor"
+                size="2.3rem"
+                name="dashboard_customize"
+              />
             </q-item-section>
 
             <q-item-section class="responsive-text">
@@ -74,88 +87,63 @@
             </q-item-section>
           </q-item>
 
-          <q-expansion-item group="somegroup" v-model="management">
+          <q-expansion-item v-model="management">
             <template v-slot:header>
               <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="list"
-                  size="40px"
-                  :style="{
-                    'background-color':
-                      management === true ? '#057407' : '#5f6368',
-                  }"
-                ></q-avatar>
+                <q-icon size="2.3rem" name="today" />
               </q-item-section>
-              <q-item-section class="responsive-text">
-                <q-item-label> <b>CHO Settings</b> </q-item-label>
+              <q-item-section
+                class="responsive-text"
+                style="margin-left: -15px"
+              >
+                <q-item-label style="font-size: 15px">
+                  <b>Resident Information</b>
+                </q-item-label>
               </q-item-section>
             </template>
 
             <q-item
               clickable
-              v-ripple
               @click="toggleSection('health_card')"
               :class="{ 'active-item': selectedSection === 'health_card' }"
             >
-              <q-item-section class="q-ml-sm">
+              <q-item-section class="q-ml-sm" style="margin-left: -15px">
                 <q-item-label>
                   <q-icon
-                    :style="{
-                      color:
-                        selectedSection === 'health_card'
-                          ? '#006400'
-                          : 'inherit',
-                    }"
-                    name="groups"
-                    class="q-ml-md q-mr-md"
+                    size="1.5rem"
+                    name="description"
+                    class="iconcolor q-ml-md q-mr-md"
                   />
-                  Health Card</q-item-label
+                  Resident Form</q-item-label
                 >
               </q-item-section>
             </q-item>
 
-            <q-item
+            <!--  <q-item
               clickable
-              v-ripple
               @click="toggleSection('ToDoos_Two')"
               :class="{ 'active-item': selectedSection === 'ToDoos_Two' }"
             >
               <q-item-section class="q-ml-sm">
                 <q-item-label>
                   <q-icon
-                    :style="{
-                      color:
-                        selectedSection === 'ToDoos_Two'
-                          ? '#006400'
-                          : 'inherit',
-                    }"
+                    size="1.5rem"
                     name="groups"
-                    class="q-ml-md q-mr-md"
+                    class="iconcolor q-ml-md q-mr-md"
                   />
                   To Do's 2</q-item-label
                 >
               </q-item-section>
-            </q-item>
+            </q-item> -->
           </q-expansion-item>
 
-          <q-expansion-item group="somegroup" v-model="settings">
+          <q-expansion-item v-model="settings">
             <template v-slot:header>
               <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  :style="{
-                    'background-color':
-                      settings === true ? '#057407' : '#5f6368',
-                  }"
-                  text-color="white"
-                  icon="settings"
-                  size="40px"
-                ></q-avatar>
+                <q-icon size="2.3rem" name="menu_book" />
               </q-item-section>
               <q-item-section class="responsive-text">
-                <q-item-label> <b>Settings</b> </q-item-label>
+                <q-item-label> <b>Blotter Records</b> </q-item-label>
               </q-item-section>
             </template>
             <q-item
@@ -164,17 +152,71 @@
               @click="toggleSection('user')"
               :class="{ 'active-item': selectedSection === 'user' }"
             >
-              <q-item-section class="q-ml-sm">
+              <q-item-section class="q-ml-sm" style="margin-left: -15px">
                 <q-item-label>
                   <q-icon
-                    :style="{
-                      color: selectedSection === 'user' ? '#006400' : 'inherit',
-                    }"
-                    name="people"
-                    class="q-ml-md q-mr-md"
+                    size="1.5rem"
+                    name="edit_square"
+                    class="iconcolor q-ml-md q-mr-md"
                   />
-                  User</q-item-label
+                  Blotter Form</q-item-label
                 >
+              </q-item-section>
+            </q-item>
+          </q-expansion-item>
+
+          <q-expansion-item v-model="brgyofficials">
+            <template v-slot:header>
+              <q-item-section avatar>
+                <q-icon size="2.3rem" name="supervisor_account" />
+              </q-item-section>
+              <q-item-section class="responsive-text">
+                <q-item-label> <b>Barangay Officials</b> </q-item-label>
+              </q-item-section>
+            </template>
+            <q-item
+              clickable
+              v-ripple
+              @click="toggleSection('user')"
+              :class="{ 'active-item': selectedSection === 'user' }"
+            >
+              <q-item-section class="q-ml-sm" style="margin-left: -15px">
+                <q-item-label>
+                  <q-icon
+                    size="1.5rem"
+                    name="sticky_note_2"
+                    class="iconcolor q-ml-md q-mr-md"
+                  />
+                  Brgy Official Records</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+          </q-expansion-item>
+
+          <q-expansion-item v-model="useraccount">
+            <template v-slot:header>
+              <q-item-section avatar>
+                <q-icon size="2.3rem" name="manage_accounts" />
+              </q-item-section>
+              <q-item-section class="responsive-text">
+                <q-item-label> <b>User Account</b> </q-item-label>
+              </q-item-section>
+            </template>
+            <q-item
+              clickable
+              v-ripple
+              @click="toggleSection('user')"
+              :class="{ 'active-item': selectedSection === 'useraccount' }"
+            >
+              <q-item-section class="q-ml-sm" style="margin-left: -15px">
+                <q-item-label>
+                  <q-icon
+                    size="1.5rem"
+                    name="sticky_note_2"
+                    class="iconcolor q-ml-md q-mr-md"
+                  />
+                  User
+                </q-item-label>
               </q-item-section>
             </q-item>
           </q-expansion-item>
@@ -230,24 +272,29 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(true);
+    const settings = ref(true);
+    const management = ref(true);
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
+      settings,
+      management,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
     };
   },
+
   data() {
     return {
       selectedSection: "dashboard",
       DashboardView: true,
       showHealthCard: false,
       showTodosTwo: false,
-      management: false,
-      settings: false,
+      brgyofficials: true,
+      useraccount: true,
     };
   },
   methods: {
@@ -255,20 +302,21 @@ export default defineComponent({
       // Call both functions here
       this.toggleSection("dashboard");
     },
-    toggleSubMenu() {
-      this.submenuOpen = !this.submenuOpen;
-    },
 
-    closeSubMenu() {
+    /*   toggleSubMenu() {
+      this.submenuOpen = !this.submenuOpen;
+    }, */
+
+    /*   closeSubMenu() {
       this.submenuOpen = false;
-    },
+    }, */
     toggleSection(section) {
       this.showHealthCard = section === "health_card";
       this.showTodosTwo = section === "ToDoos_Two";
       this.DashboardView = section === "dashboard";
       if (section === "dashboard") {
-        this.management = false; // Close management expansion item
-        this.settings = false; // Close settings expansion item
+        this.management = true; // Close management expansion item
+        this.settings = true; // Close settings expansion item
       } else {
       }
       if (this.selectedSection === section) {
@@ -283,6 +331,38 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.iconcolor {
+  color: rgba(12, 156, 10, 0.701);
+}
+
+.avatar-default {
+  background: linear-gradient(
+    40deg,
+    #279f27,
+    #5fc331
+  ); /* Gradient from green to white */
+}
+
+.avatar-with-overlay {
+  position: relative; /* Set position to relative */
+}
+
+.avatar-with-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    40deg,
+    #279f27,
+    #5fc331
+  ); /* Gradient from green to white */
+
+  border-radius: inherit; /* Inherit border radius from the avatar */
+}
+
 .GNL__toolbar {
   height: 64px;
 }

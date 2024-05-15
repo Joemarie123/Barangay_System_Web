@@ -2,15 +2,45 @@
   <div>
     <div class="col-12 col-sm-6 col-md-3 col-lg-9 q-mt-sm">
       <q-card class="my-card" bordered>
-        <div class="row justify-start">
-          <div class="col-2 q-pa-md">
-            <b
-              ><p style="font-size: 20px; color: #0c0c0c">
-                Health Card Details
-              </p></b
-            >
-          </div>
+        <q-banner rounded class=" ">
+          <div class="row justify-start">
+            <div class="col-1">
+              <q-btn
+                class="blendingcolor"
+                style="background-color: white"
+                @click="CreationDialog_Eligibility = true"
+              >
+                <a style="color: white">CREATE</a>
+              </q-btn>
+            </div>
+            <div class="col-2 q-mt-sm">
+              <b
+                ><p style="font-size: 20px; color: black">
+                  RESIDENT RECORDS
+                </p></b
+              >
+            </div>
 
+            <div class="col-2">
+              <!--    <template v-slot:top-right> -->
+              <q-input
+                style="background-color: white"
+                color="white"
+                dense
+                filled
+                debounce="300"
+                v-model="filter_eligibility"
+                placeholder="Search"
+              >
+                <template v-slot:append>
+                  <q-icon color="blank" name="search" />
+                </template>
+              </q-input>
+              <!--    </template> -->
+            </div>
+          </div>
+        </q-banner>
+        <div class="row justify-start">
           <q-dialog v-model="dialogpersonal" persistent>
             <q-card style="width: 50%; height: 75%">
               <q-card-section>
@@ -377,7 +407,7 @@
             </q-card>
           </q-dialog>
 
-          <div class="col-8 q-pa-sm">
+          <!--    <div class="col-8 q-pa-sm">
             <q-btn
               icon="camera_enhance"
               glossy
@@ -386,9 +416,9 @@
               @click="Rowclick"
             />
           </div>
+ -->
+          <!--   <div class="col-2 q-pa-sm">
 
-          <div class="col-2 q-pa-sm">
-            <!--    <template v-slot:top-right> -->
             <q-input
               borderless
               dense
@@ -400,8 +430,8 @@
                 <q-icon name="search" />
               </template>
             </q-input>
-            <!--    </template> -->
-          </div>
+
+          </div> -->
         </div>
         <!--    <div class="row dashboard">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -501,7 +531,7 @@ export default defineComponent({
         {
           name: "Date",
           align: "center",
-          label: "Date",
+          label: "Birth Day",
           field: "Date",
           sortable: true,
         },
@@ -514,6 +544,7 @@ export default defineComponent({
 
         { name: "Age", label: "Age", field: "Age" },
         { name: "Sex", label: "Sex", field: "Sex" },
+        { name: "Voters", label: "Voters", field: "Voters" },
         { name: "Place", label: "Place", field: "Place", align: "center" },
       ],
 
@@ -524,6 +555,7 @@ export default defineComponent({
           Occupation: "Programmer",
           Age: 24,
           Sex: "Male",
+          Voters: "Yes",
           Place: "Apokon Tagum City",
         },
         {
@@ -532,6 +564,7 @@ export default defineComponent({
           Occupation: "Web Developer",
           Age: 37,
           Sex: "Male",
+          Voters: "Yes",
           Place: "Apokon Tagum City",
         },
         {
@@ -540,6 +573,7 @@ export default defineComponent({
           Occupation: "Delivery Boy",
           Age: 23,
           Sex: "Male",
+          Voters: "Yes",
           Place: "Apokon Tagum City",
         },
         {
@@ -548,6 +582,7 @@ export default defineComponent({
           Occupation: "Buss Driver",
           Age: 67,
           Sex: "Male",
+          Voters: "No",
           Place: "Apokon Tagum City",
         },
         {
@@ -556,6 +591,7 @@ export default defineComponent({
           Occupation: "Front End Web Dev",
           Age: 49,
           Sex: "Female",
+          Voters: "No",
           Place: "Apokon Tagum City",
         },
         {
@@ -564,6 +600,7 @@ export default defineComponent({
           Occupation: "Network Administrator",
           Age: 94,
           Sex: "Male",
+          Voters: "No",
           Place: "Apokon Tagum City",
         },
       ],
@@ -605,13 +642,17 @@ export default defineComponent({
     },
 
     Rowclick() {
-      this.dialogpersonal = true;
+      /*  this.dialogpersonal = true; */
     },
   },
 });
 </script>
 
 <style scoped>
+.blendingcolor {
+  background: linear-gradient(40deg, #279f27, #5fc331);
+}
+
 .placeholder {
   border: 2px dashed #ccc;
   padding-top: 80px;
